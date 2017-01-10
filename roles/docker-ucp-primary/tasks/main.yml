@@ -2,7 +2,7 @@
 
 - name: "Test if UCP primary controller already exists"
   uri:
-    url: "https://{{ ucp_fqdn }}/_ping"
+    url: "https://localhost/_ping"
     validate_certs: no
   register: ucp_primary
   ignore_errors: yes
