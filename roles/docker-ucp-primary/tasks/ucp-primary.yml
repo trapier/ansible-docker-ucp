@@ -1,6 +1,6 @@
 ---
 
-- include: ucp-iptables.yml
+#- include: ucp-iptables.yml
 
 - name: "Copy images to host"
   copy:

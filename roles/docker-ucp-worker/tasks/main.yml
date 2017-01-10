@@ -1,6 +1,6 @@
 ---
 
-- include: ucp-iptables.yml
+#- include: ucp-iptables.yml
 
 
 - name: "Wait for UCP controller to come up"
