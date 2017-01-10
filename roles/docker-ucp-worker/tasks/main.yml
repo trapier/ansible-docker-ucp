@@ -24,7 +24,7 @@
   register: ucp_fingerprint
 
 - name: "Join worker to cluster"
-  command: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -e UCP_ADMIN_USER=admin -e UCP_ADMIN_PASSWORD={{ ucp_admin_password }} --name ucp docker/ucp join --url https://{{ ucp_fqdn }} --san {{ ansible_fqdn }} --san {{ ucp_fqdn }} --fingerprint {{ ucp_fingerprint.stdout }}
+  command: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -e UCP_ADMIN_USER=admin -e UCP_ADMIN_PASSWORD={{ ucp_admin_password }} --name ucp docker/ucp:{{ ucp_version }} join --url https://{{ ucp_fqdn }} --san {{ ansible_fqdn }} --san {{ ucp_fqdn }} --fingerprint {{ ucp_fingerprint.stdout }}
 
 - name: "Restart docker engine"
   service:
