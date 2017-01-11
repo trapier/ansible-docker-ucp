@@ -2,3 +2,4 @@
 
 ucp_version: "1.1.5"
 ucp_fqdn: "{{ hostvars['node01']['ansible_default_ipv4']['address']}}"
+ddc_images: ucp_images_1.1.5.tar.gz
