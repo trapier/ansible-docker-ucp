@@ -29,9 +29,13 @@
     owner: root
     group: root
 
+- name: "Identify latest engine package name for the requested version"
+  shell: yum -q list available --show-duplicates docker-engine-{{ engine_version }}* |tail -n1 |awk '{print gensub(/\..*/,"",g,$1)"-"$2}' 2>/dev/null
+  register: engine_package_name
+
 - name: "Install Docker package"
   yum:
-    name: docker-engine
+    name: "{{ engine_package_name.stdout }}"
     update_cache: yes
     state: installed
 
