@@ -29,12 +29,6 @@
     owner: root
     group: root
 
-- name: "Install Docker package"
-  yum:
-    name: docker-engine
-    update_cache: yes
-    state: installed
-
 - name: "Ensure /etc/docker dir exists"
   file:
     path: /etc/docker
@@ -47,4 +41,15 @@
     force: no # don't overwrite if exists
     owner: root
     group: root
+
+- name: "Set MountFlags=slave"
+  copy:
+    src: mount_flags.conf
+    dest: /etc/systemd/system/docker.service.d/
+
+- name: "Install Docker package"
+  yum:
+    name: docker-engine
+    update_cache: yes
+    state: installed
 
