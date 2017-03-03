@@ -23,6 +23,7 @@
   rpm_key: 
     key: "https://sks-keyservers.net/pks/lookup?op=get&search=0xee6d536cf7dc86e2d7d56f59a178ac6c6238f52e"
     state: present
+  tags: rpm_key
 
 - name: "Install libselinux-python to allow file copy"
   yum:
