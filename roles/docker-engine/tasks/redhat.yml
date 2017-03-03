@@ -34,12 +34,6 @@
   shell: yum -q list available --show-duplicates docker-engine-{{ engine_version }}* |tail -n1 |awk '{print gensub(/\..*/,"",g,$1)"-"$2}' 2>/dev/null
   register: engine_package_name
 
-- name: "Install Docker package"
-  yum:
-    name: "{{ engine_package_name.stdout }}"
-    update_cache: yes
-    state: installed
-
 - name: "Ensure /etc/docker dir exists"
   file:
     path: /etc/docker
@@ -60,7 +54,7 @@
 
 - name: "Install Docker package"
   yum:
-    name: docker-engine
+    name: "{{ engine_package_name.stdout }}"
     update_cache: yes
     state: installed
 
