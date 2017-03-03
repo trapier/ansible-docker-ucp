@@ -12,6 +12,13 @@
 - include: fix-tls.yml
   when: ansible_distribution_version < "7.2"
 
+- name: "Add Docker yum repo"
+  template:
+    src: docker.repo.j2
+    dest: /etc/yum.repos.d/docker.repo
+    owner: root
+    group: root
+
 - name: "Install Docker rpm key"
   rpm_key: 
     key: "https://sks-keyservers.net/pks/lookup?op=get&search=0xee6d536cf7dc86e2d7d56f59a178ac6c6238f52e"
@@ -21,13 +28,6 @@
   yum:
     name: libselinux-python
     state: present
-
-- name: "Add Docker yum repo"
-  template: 
-    src: docker.repo.j2
-    dest: /etc/yum.repos.d/docker.repo
-    owner: root
-    group: root
 
 - name: "Identify latest engine package name for the requested version"
   shell: yum -q list available --show-duplicates docker-engine-{{ engine_version }}* |tail -n1 |awk '{print gensub(/\..*/,"",g,$1)"-"$2}' 2>/dev/null
