@@ -1,4 +1,5 @@
 ---
 
 engine_version: "1.12"
-engine_branch: "main"
+docker_ee_url: ""
+engine_branch: "{{ (docker_ee_url != '' ) | ternary('stable', 'main') }}"

@@ -1,6 +1,50 @@
+{% if docker_ee_url != "" %}
+[docker-ee-{{engine_branch}}-{{engine_version}}]
+name=Docker EE Stable {{engine_version}} - $basearch
+baseurl={{docker_ee_url}}/centos/7/$basearch/{{engine_branch}}-{{engine_version}}/
+enabled=1
+gpgcheck=1
+gpgkey={{docker_ee_url}}/centos/gpg
+
+[docker-ee-{{engine_branch}}-{{engine_version}}-debuginfo]
+name=Docker EE Stable {{engine_version}} - Debuginfo $basearch
+baseurl={{docker_ee_url}}/centos/7/debug-$basearch/{{engine_branch}}-{{engine_version}}/
+enabled=0
+gpgcheck=1
+gpgkey={{docker_ee_url}}/centos/gpg
+
+[docker-ee-{{engine_branch}}-{{engine_version}}-source]
+name=Docker EE Stable {{engine_version}} - Sources
+baseurl={{docker_ee_url}}/centos/7/source/{{engine_branch}}-{{engine_version}}/
+enabled=0
+gpgcheck=1
+gpgkey={{docker_ee_url}}/centos/gpg
+
+[docker-ee-{{engine_branch}}]
+name=Docker EE Stable - $basearch
+baseurl={{docker_ee_url}}/centos/7/$basearch/{{engine_branch}}/
+enabled=0
+gpgcheck=1
+gpgkey={{docker_ee_url}}/centos/gpg
+
+[docker-ee-{{engine_branch}}-debuginfo]
+name=Docker EE Stable - Debuginfo $basearch
+baseurl={{docker_ee_url}}/centos/7/debug-$basearch/{{engine_branch}}/
+enabled=0
+gpgcheck=1
+gpgkey={{docker_ee_url}}/centos/gpg
+
+[docker-ee-{{engine_branch}}-source]
+name=Docker EE Stable - Sources
+baseurl={{docker_ee_url}}/centos/7/source/{{engine_branch}}/
+enabled=0
+gpgcheck=1
+gpgkey={{docker_ee_url}}/centos/gpg
+{% else %}
 [Docker]
 name=Official Docker Repository
 baseurl=https://packages.docker.com/{{ engine_version }}/yum/repo/{{ engine_branch }}/centos/7
 enabled=1
 gpgcheck=1
+{% endif %}
 

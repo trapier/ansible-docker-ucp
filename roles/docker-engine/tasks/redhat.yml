@@ -49,7 +49,7 @@
 
 - name: "Install Docker package"
   yum:
-    name: docker-engine
+    name: "{{ (docker_ee_url != '') | ternary ('docker-ee','docker-engine') }}"
     update_cache: yes
     state: installed
 
