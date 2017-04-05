@@ -16,6 +16,7 @@
     vg: docker
     pvs: "{{ dm_device }}"
     state: present
+  tags: vgcreate
 
 - name: "devicemapper: Create logical volume"
   lvol:
