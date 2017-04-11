@@ -1,4 +1,9 @@
 ---
 
 dm_device: "/dev/vdb"
-storage_opts: "dm.thinpooldev=/dev/mapper/docker-thinpool"
+
+storage_options:
+  "storage-driver": "{{storage_driver}}"
+  "storage-opts":
+    - "dm.thinpooldev=/dev/mapper/docker-thinpool"
+    - "dm.use_deferred_removal=true"
