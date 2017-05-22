@@ -1,1 +1,1 @@
-{{ storage_options | to_nice_json }}
+{{ storage_options | combine(extra_daemon_options)  | to_nice_json }}
